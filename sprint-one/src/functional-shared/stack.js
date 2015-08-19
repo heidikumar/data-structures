@@ -12,10 +12,8 @@ var Stack = function() {
 
 var stackMethods = {
   push : function(value){
-    //count up highest
-    this.highest++;
-    //add value as a property of storage at key highest
     this.storage[this.highest] = value;
+    this.highest++;
   },
 
   pop : function(){
@@ -32,5 +30,7 @@ var stackMethods = {
     return this.highest;
   }
 };
+
+
 
 
