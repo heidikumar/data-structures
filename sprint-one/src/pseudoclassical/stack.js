@@ -19,7 +19,7 @@ Stack.prototype.pop = function(){
   }
 };
 
-Stack.prototype.size = {
+Stack.prototype.size = function(){
   return this.highest;
 };
 
