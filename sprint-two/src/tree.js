@@ -29,7 +29,6 @@ treeMethods.contains = function(target, node, wasFound){
   }
   if (wasFound === false) {
     for (var i=0; i<node.children.length; i++){
-      //debugger
       wasFound = this.contains(target, node.children[i], wasFound);
     }
   }
