@@ -62,7 +62,6 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
 Graph.prototype.forEachNode = function(cb){
   cb = cb || _.identity;                      //NOTE: Write spec so that if cb not passed, defaults to _.identity
   for (var key in this){
-    debugger
     cb(key);
   }
 };
