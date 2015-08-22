@@ -44,20 +44,15 @@ BinarySearchTree.prototype.contains = function (value, node, wasFound) {
 };
 
 BinarySearchTree.prototype.depthFirstLog = function(callback, node) {
-  //debugger;
-  node = node || this;
-  if(node.left === null && node.right === null) {
-    callback(node.value);
-  } else {
-    if(node.right !== null) {
-       this.depthFirstLog(callback, node.right);
-       callback(node.value);
-     } 
-     if(node.left !== null){
-       this.depthFirstLog(callback, node.left);
-       callback(node.value);
-     }
-   }
+  node = node|| this;
+  callback(node.value);
+  if (node.left !== null){
+    this.depthFirstLog(callback, node.left);
+  } 
+  if (node.right!==null){
+    this.depthFirstLog(callback, node.right);
+  }
+
 };
 
 
