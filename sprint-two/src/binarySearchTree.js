@@ -43,9 +43,23 @@ BinarySearchTree.prototype.contains = function (value, node, wasFound) {
   return wasFound;
 };
 
-BinarySearchTree.prototype.depthFirstLog = function() {
-
+BinarySearchTree.prototype.depthFirstLog = function(callback, node) {
+  //debugger;
+  node = node || this;
+  if(node.left === null && node.right === null) {
+    callback(node.value);
+  } else {
+    if(node.right !== null) {
+       this.depthFirstLog(callback, node.right);
+       callback(node.value);
+     } 
+     if(node.left !== null){
+       this.depthFirstLog(callback, node.left);
+       callback(node.value);
+     }
+   }
 };
+
 
 /*BinarySearchTree.prototype.walkTree = function(start, value, callback) {
   //if start is equal to value, do something
