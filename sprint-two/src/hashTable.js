@@ -1,6 +1,7 @@
 var HashTable = function(){
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
+  this._size = 0;
 };
 
 HashTable.prototype.insert = function(k, v){
@@ -25,18 +26,22 @@ HashTable.prototype.insert = function(k, v){
 
   //setting i and v in _storage
   this._storage.set(i,bucket);
+  this._size++;
+  if (this._size/this._limit > 0.75){
+    this.resize(this._limit*2);
+  }
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  var bucket = this._storage.get(i);
-  var result = null;
-  for(var j=0; j<bucket.length; j++) {
-    if (bucket[j][0]===k) {
-      result =  bucket[j][1];
+  var bucket = this._storage.get(i) || [];
+  for (var index = 0; index < bucket.length; index ++){
+    var tuple = bucket[index];
+    if (tuple[0] === k){
+      return tuple[1];
     }
-  }
-  return result;
+  } 
+  return null;
 };
 
 HashTable.prototype.remove = function(k){
@@ -48,6 +53,37 @@ HashTable.prototype.remove = function(k){
     }
   }
   this._storage.set(i, bucket);
+  this._size--;
+  if (this._size / this._limit <= 0.25){
+    this.resize(this._limit/2);
+  }
+};
+
+  // debugger;
+HashTable.prototype.resize = function(newLimit){
+  console.log(this._size);
+  var oldStorage = this._storage;
+  var oldLimit = this._limit;
+  this._limit = newLimit;
+  this._storage = LimitedArray(newLimit);
+  this.redistribute(oldStorage, newLimit, oldLimit);
+};
+
+HashTable.prototype.redistribute = function(oldStorage, newLimit, oldLimit){
+
+  for (var j = 0; j<oldLimit; j++){
+  // declare a bucket
+
+  var bucket = oldStorage.get(j) || [];
+    //new for loop in bucket
+    for (var bucketIndex = 0; bucketIndex < bucket.length; bucketIndex++){
+      var tuple = bucket[bucketIndex];
+      //for each key in each tuple, generate a new Hash from Hash function
+      this.insert(tuple[0], tuple[1]);
+      //insert that tuple in the new table, at new Hash bucketIndex
+    }
+  }
+
 };
 
 
