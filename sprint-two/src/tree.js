@@ -38,19 +38,6 @@ treeMethods.contains = function(target, node, wasFound){
 
 /*
  * Complexity: What is the time complexity of the above functions?
-
-var familyTree = Tree("Mom");
-
-{
-  value: "Mom",
-  children: [{value: "Sam", children: []}]
-  addChild : fn,
-
-}
-
-familyTree.addChild("Sam");
-
-familyTree.contains("Sam");
-
-
- */
+ * Constant time for addChild
+ * Linear time for contains
+*/

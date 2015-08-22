@@ -55,26 +55,9 @@ BinarySearchTree.prototype.depthFirstLog = function(callback, node) {
 
 };
 
-
-/*BinarySearchTree.prototype.walkTree = function(start, value, callback) {
-  //if start is equal to value, do something
-  if(start.left === null && start.right === null) {
-    callback(start);
-  }
-
-  if(start.value === value) {
-    callback(start);
-
-  //if value is less than start.value, go left
-  } else if (value < start.value) {
-    this.walkTree(start.left, value, callback);
-  //if value is greater than start.value, go right
-  } else if (value > start.value) {
-    this.walkTree(start.right, value, callback);
-  }
-};*/
-
 /*
  * Complexity: What is the time complexity of the above functions?
-
+ * insert runs in logarithmic time
+ * contains runs in logarithmic time
+ * depthFirstLog runs in linear time
  */

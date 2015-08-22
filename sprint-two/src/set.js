@@ -21,4 +21,5 @@ setPrototype.remove = function(item){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * add, contains, and remove all run in linear time
  */

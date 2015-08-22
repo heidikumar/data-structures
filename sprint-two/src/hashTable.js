@@ -54,4 +54,7 @@ HashTable.prototype.remove = function(k){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * Insert, remove, retrieve: even though they uses a linear time operation, 
+ * they is constant time because bucket size is tiny compared to storage size.
+ * If we added a resort, that would be linear time.
  */
