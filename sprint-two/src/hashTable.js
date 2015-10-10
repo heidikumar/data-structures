@@ -1,10 +1,10 @@
-var HashTable = function(){
+var HashTable = function () {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
   this._size = 0;
 };
 
-HashTable.prototype.insert = function(k, v){
+HashTable.prototype.insert = function (k, v) {
   var i = getIndexBelowMaxForKey(k, this._limit);
   var bucket;
   if (this._storage.get(i)===undefined){
@@ -17,15 +17,13 @@ HashTable.prototype.insert = function(k, v){
     if (bucket[j][0]===k){
         existsIndex = j;
     }
-  }
+  };
   if (existsIndex >= 0){
     bucket[existsIndex][1] = v;
   } else {
     bucket.push([k,v]);
   }
 
-  //setting i and v in _storage
-  debugger;
   this._storage.set(i,bucket);
   this._size++;
   if (Math.floor(this._limit * 0.75) <= this._size){
@@ -33,7 +31,7 @@ HashTable.prototype.insert = function(k, v){
   }
 };
 
-HashTable.prototype.retrieve = function(k){
+HashTable.prototype.retrieve = function (k) {
   var i = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(i);
   var result = null;
@@ -41,11 +39,11 @@ HashTable.prototype.retrieve = function(k){
     if (bucket[j][0]===k) {
       result =  bucket[j][1];
     }
-  }
+  };
   return result;
 };
 
-HashTable.prototype.remove = function(k){
+HashTable.prototype.remove = function (k) {
   var i = getIndexBelowMaxForKey(k, this._limit);
   // debugger;
   var bucket =this._storage.get(i);
@@ -53,7 +51,7 @@ HashTable.prototype.remove = function(k){
     if (bucket[j][0]===k){
       bucket.splice(j,1);
     }
-  }
+  };
   this._storage.set(i, bucket);                       //GETTING A BUG IN THE SETTER WHERE "typeof i" is not a number, and therefore bucket gets set to undefined
   this._size--;
   if (Math.floor(this._limit * 0.25) <= this._size){
@@ -62,7 +60,7 @@ HashTable.prototype.remove = function(k){
 };
 
 
-HashTable.prototype.resize = function(newLimit){
+HashTable.prototype.resize = function (newLimit) {
   //create a temp array;
   var tempArray = [];
   this._limit = newLimit;
@@ -78,22 +76,18 @@ HashTable.prototype.resize = function(newLimit){
       }
   //now we have an array of all the tuples
   };
-
   //this._storage = the new LimitedArray
   this._storage = LimitedArray(this._limit);
   //loop through temp array
-    for (var x=0; x<tempArray.length; x++){
-    //insert(array[i][0], array[i][1]);
-      this.insert(array[x][0], array[x][1]);      
-    };
-}
-
-
-
+  for (var x=0; x<tempArray.length; x++){
+  //insert(array[i][0], array[i][1]);
+    this.insert(array[x][0], array[x][1]);
+  };
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
- * Insert, remove, retrieve: even though they uses a linear time operation, 
+ * Insert, remove, retrieve: even though they uses a linear time operation,
  * they is constant time because bucket size is tiny compared to storage size.
  * If we added a resort, that would be linear time.
  */

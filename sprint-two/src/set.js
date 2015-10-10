@@ -1,4 +1,4 @@
-var Set = function(){
+var Set = function () {
   var set = Object.create(setPrototype);
   set._storage = [];
   return set;
@@ -6,15 +6,15 @@ var Set = function(){
 
 var setPrototype = {};
 
-setPrototype.add = function(item){
+setPrototype.add = function (item) {
   this.contains(item) ? this._storage = this._storage : this._storage.push(item);
 };
 
-setPrototype.contains = function(item){
+setPrototype.contains = function (item) {
   return _.contains(this._storage, item);
 };
 
-setPrototype.remove = function(item){
+setPrototype.remove = function (item) {
   var index = _.indexOf(this._storage, item);
   this._storage.splice(index,1);
 };
