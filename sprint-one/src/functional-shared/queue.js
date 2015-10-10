@@ -1,4 +1,4 @@
-var Queue = function(){
+var Queue = function () {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   var someInstance = {};
@@ -16,7 +16,7 @@ var queueMethods = {
     this.highest++;
     this.storage[0] = value;
   },
-  dequeue : function() {
+  dequeue : function () {
     if (this.highest>0){
       this.highest--;
       var temp = this.storage[this.highest];
@@ -24,9 +24,9 @@ var queueMethods = {
       return temp;
     }
   },
-  size : function() {
+  size : function () {
     return this.highest;
-  } 
+  }
 };
 
 

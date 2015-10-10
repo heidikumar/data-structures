@@ -12,7 +12,6 @@ Graph.prototype.addNode = function(node){
   this[node] = {
     edges : {}
   };
-
 };
 
 // ------------------------
